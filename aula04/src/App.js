@@ -1,25 +1,18 @@
-import React from "react";
-
-const textos = [
-{id: 1, texto: 'Texto 1'},
-{id: 2, texto: 'Texto 2'},  
-{id: 3, texto: 'Texto 3'},
-{id: 4, texto: 'Texto 4'},
-{id: 5, texto: 'Texto 5'}
-];
-
-function item({item}) {
-  return <li>{item.texto}</li> ;
-}
+import React, {useState, useRef} from "react";
 
 function App() {
+  const [mensagem, setMensagem] = useState('');
+  const inputRef = useRef(null);
   return(
     <div>
-      <ul>
-        {
-            textos.map(x => <Item key={x.id} item={x} />)
-        }
-      </ul>
+      <label>Nome</label>
+      <input
+         style={{marginLeft: '10px',marginRight: '10px' }}
+          type = "text"
+          ref={inputRef}
+        />
+      <button onClick={() => setMensagem(`Olá ${inputRef.current.value}`)}>Mostrar</button>
+      <p>{mensagem}</p>
     </div>
   );
 }
